@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora IPv4</title>
+  <meta name="description" content="Calculadora de direccionamiento IPv4: red, broadcast, hosts, clase y tipo de dirección.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Calculadora IPv4</h1>
+      <p class="sub">Redes de Datos I · Cálculo de subredes y clasificación de direcciones</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card" aria-labelledby="titulo-entrada">
+      <h2 id="titulo-entrada">Datos de entrada</h2>
+
+      <div class="tabs" role="tablist" aria-label="Formato de entrada">
+        <button type="button" role="tab" id="tab-cidr" aria-selected="true" aria-controls="form-calc" data-mode="cidr">IP / prefijo</button>
+        <button type="button" role="tab" id="tab-mask" aria-selected="false" aria-controls="form-calc" data-mode="mask">IP + máscara</button>
+      </div>
+
+      <form id="form-calc" novalidate autocomplete="off">
+        <div class="campos" data-show="cidr">
+          <label for="in-cidr">Dirección con prefijo</label>
+          <input id="in-cidr" name="cidr" type="text" inputmode="decimal" spellcheck="false"
+                 placeholder="192.168.10.25/27" aria-describedby="err-cidr">
+          <p class="err" id="err-cidr" role="alert"></p>
+        </div>
+
+        <div class="campos dos" data-show="mask" hidden>
+          <div>
+            <label for="in-ip">Dirección IP</label>
+            <input id="in-ip" name="ip" type="text" inputmode="decimal" spellcheck="false"
+                   placeholder="192.168.10.25" aria-describedby="err-ip">
+            <p class="err" id="err-ip" role="alert"></p>
+          </div>
+          <div>
+            <label for="in-mask">Máscara decimal</label>
+            <input id="in-mask" name="mask" type="text" inputmode="decimal" spellcheck="false"
+                   placeholder="255.255.255.224" aria-describedby="err-mask">
+            <p class="err" id="err-mask" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" class="btn">Calcular</button>
+          <button type="button" class="btn sec" id="btn-limpiar">Limpiar</button>
+        </div>
+      </form>
+
+      <details class="ejemplos">
+        <summary>Ejemplos de la guía</summary>
+        <div class="chips" id="chips">
+          <button type="button" data-cidr="192.168.1.100/24">192.168.1.100/24</button>
+          <button type="button" data-cidr="172.16.10.50/30">172.16.10.50/30</button>
+          <button type="button" data-cidr="10.0.0.0/31">10.0.0.0/31</button>
+          <button type="button" data-cidr="192.168.1.25/32">192.168.1.25/32</button>
+          <button type="button" data-cidr="224.0.0.1/24">224.0.0.1/24</button>
+          <button type="button" data-cidr="240.0.0.1/24">240.0.0.1/24</button>
+          <button type="button" data-cidr="127.0.0.1/8">127.0.0.1/8</button>
+          <button type="button" data-cidr="169.254.10.20/16">169.254.10.20/16</button>
+          <button type="button" data-cidr="192.168.1.300/24">192.168.1.300/24</button>
+          <button type="button" data-cidr="192.168.1.10/33">192.168.1.10/33</button>
+          <button type="button" data-ip="192.168.1.10" data-mask="255.0.255.0">192.168.1.10 + 255.0.255.0</button>
+          <button type="button" data-cidr="0.0.0.0/0">0.0.0.0/0</button>
+          <button type="button" data-cidr="255.255.255.255/32">255.255.255.255/32</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="resultado" aria-live="polite" hidden>
+      <h2>Resultado <span id="res-titulo" class="mono"></span></h2>
+      <div class="badges" id="badges"></div>
+      <table class="tabla">
+        <tbody id="res-tabla"></tbody>
+      </table>
+
+      <div id="avisos"></div>
+
+      <h3>Representación binaria</h3>
+      <p class="ayuda">En negrita la parte de red (bits del prefijo).</p>
+      <div class="binario mono" id="binario"></div>
+    </section>
+  </main>
+
+  <footer class="wrap pie">
+    <p>Referencias: RFC 950, RFC 1918, RFC 3021, RFC 4632, RFC 6890 y registro de direcciones IPv4 especiales de IANA.</p>
+  </footer>
+
+  <!-- el orden importa: cada archivo usa los anteriores -->
+  <script src="js/ipv4-core.js"></script>
+  <script src="js/special-ranges.js"></script>
+  <script src="js/ipv4-classify.js"></script>
+  <script src="js/ipv4-analyze.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

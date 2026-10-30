@@ -59,7 +59,7 @@
       r.networkNote = 'Es el inicio del bloque multicast, no una red de hosts.';
       r.broadcastNote = 'No aplica: en multicast no hay broadcast dirigido.';
       r.usableNote = 'No aplica: las direcciones de clase D identifican grupos multicast, no hosts.';
-      r.hostRangeNote = 'No aplica (multicast).';
+      r.hostRangeNote = 'Las direcciones multicast no se asignan a hosts.';
       r.notes.push('Clase D (224.0.0.0/4): direcciones de grupo multicast (RFC 5771). ' +
         'Se muestra el bloque solo como cálculo, sin tratarlo como subred unicast.');
     }
@@ -70,7 +70,7 @@
       r.networkNote = 'Es el inicio del bloque, pero la clase E no se usa para redes de hosts.';
       r.broadcastNote = 'No aplica: la clase E no se usa para subredes unicast.';
       r.usableNote = 'No aplica: la clase E está reservada (RFC 1112), no se asigna a hosts.';
-      r.hostRangeNote = 'No aplica (clase E reservada).';
+      r.hostRangeNote = 'La clase E no se asigna a hosts.';
       if (ip === LIMITED_BROADCAST) {
         r.kind = 'broadcast-limitado';
         r.notes.push('255.255.255.255 es el broadcast limitado (RFC 919, RFC 8190): llega a todos los ' +
@@ -87,7 +87,7 @@
       r.networkNote = '0.0.0.0/0 es la ruta por defecto: abarca todas las direcciones IPv4.';
       r.broadcastNote = 'No aplica: /0 no es una subred real, es la ruta por defecto.';
       r.usableNote = 'No aplica: /0 cubre todo IPv4 (incluye privadas, multicast y reservadas).';
-      r.hostRangeNote = 'No aplica (/0).';
+      r.hostRangeNote = 'Con /0 no se calcula rango de hosts.';
       r.notes.push('Con /0 la máscara es 0.0.0.0 y todos los bits son de host. Se usa en tablas de ' +
         'enrutamiento como "cualquier destino" (RFC 4632).');
     }
