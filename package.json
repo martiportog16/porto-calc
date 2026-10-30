@@ -1,0 +1,13 @@
+{
+  "name": "porto-calc",
+  "version": "0.1.0",
+  "description": "Calculadora IPv4 - Redes de Datos I",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
